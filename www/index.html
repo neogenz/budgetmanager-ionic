@@ -1,0 +1,124 @@
+<!doctype html>
+<title>Budget manager</title>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+
+
+  <link rel="stylesheet" href="assets/libs/bootstrap/css/bootswatch.min.css">
+  <link rel="stylesheet" href="assets/libs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/libs/angular/modules/loading-bar/loading-bar.css">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/custom.css">
+
+  <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+  <link href="css/ionic.app.css" rel="stylesheet">
+  -->
+
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+</head>
+
+<body ng-app="appBudgetManager">
+<ion-nav-view></ion-nav-view>
+<!--<nav role="navigation" class="navbar background-color-blue-1 navbar-inverse">
+  <div class="container-fluid">
+    &lt;!&ndash; Brand and toggle get grouped for better mobile display &ndash;&gt;
+    <div class="navbar-header background-color-blue-1">
+      <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle"
+              data-target="#navbarCollapse" aria-expanded="false">
+        <span class="sr-only">Navigation mobile</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="#/" class="navbar-brand link-color">Budget manager</a>
+    </div>
+
+    &lt;!&ndash; Collection of nav links, forms, and other content for toggling &ndash;&gt;
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li ng-show="$root.user">
+          <a ui-sref="provisionalPlans" class="link-color">
+            <span class="fa fa-calculator"></span>
+          </a>
+        </li>
+        &lt;!&ndash;<li>&ndash;&gt;
+        &lt;!&ndash;<a ui-sref="provisionalPlans">&ndash;&gt;
+        &lt;!&ndash;<span class="fa fa-calculator"></span>&ndash;&gt;
+        &lt;!&ndash;</a>&ndash;&gt;
+        &lt;!&ndash;</li>&ndash;&gt;
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="$root.user">
+          <a href class="link-color" ui-sref="userProfile">
+            {{$root.user.email}}
+          </a>
+        </li>
+        <li ng-show="$root.user" class="pull-right">
+          <a ng-controller="SignoutController" ng-click="logout()">
+            <span class="fa fa-sign-out link-color cursor"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div ui-view></div>
+</div>-->
+
+<script src="assets/libs/jquery-2.2.0.min.js"></script>
+<script src="assets/libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/libs/angular/angular-animate.min.js"></script>
+<script src="assets/libs/angular/ui-router.min.js"></script>
+<script src="assets/libs/angular/ui-bootstrap-tpls-0.12.1.min.js"></script>
+<script src="assets/libs/angular/modules/loading-bar/loading-bar.js"></script>
+<script src="assets/libs/angular/modules/ngStorage.js"></script>
+<script src="assets/libs/angular/angular-toastr.min.js"></script>
+<script src="assets/libs/underscore.min.js"></script>
+
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/commons/Utilities.js"></script>
+<script src="assets/js/commons/Logger.js"></script>
+<script src="assets/js/config/appConfig.js"></script>
+<script src="assets/js/config/endpointConfig.js"></script>
+<script src="assets/js/model/core/BaseClass.js"></script>
+<script src="assets/js/model/core/AbstractBean.js"></script>
+<script src="assets/js/model/core/AbstractSchema.js"></script>
+<script src="assets/js/model/core/AbstractFactory.js"></script>
+<script src="assets/js/model/Movement.js"></script>
+<script src="assets/js/model/ProvisionalPlan.js"></script>
+<script src="assets/js/model/User.js"></script>
+<script src="assets/js/commons/HttpUtilities.js"></script>
+<script src="assets/js/commons/uiManager.js"></script>
+<script src="app/app.js"></script>
+<script src="app/routing.js"></script>
+<script src="app/components/authentication/authenticateFactory.js"></script>
+<script src="app/components/provisionalPlan/provisionalPlanFactory.js"></script>
+<script src="app/components/provisionalPlan/provisionalPlanServices.js"></script>
+<script src="app/components/movement/movementFactory.js"></script>
+<script src="app/components/home/homeController.js"></script>
+<script src="app/components/authentication/controllers/signoutController.js"></script>
+<script src="app/components/authentication/controllers/signupController.js"></script>
+<script src="app/components/authentication/controllers/signinController.js"></script>
+<script src="app/shared/confirmAction/actionConfirmController.js"></script>
+<script src="app/components/movement/controllers/movementDetailsComponent.js"></script>
+<script src="app/components/movement/controllers/movementComponent.js"></script>
+<script src="app/components/movement/controllers/movementFormComponent.js"></script>
+<script src="app/components/provisionalPlan/controllers/provisionalPlanFormComponent.js"></script>
+<script src="app/components/provisionalPlan/controllers/provisionalPlanDetailsIonicController.js"></script>
+<script src="app/components/provisionalPlan/controllers/provisionalPlanListComponent.js"></script>
+<script src="app/components/provisionalPlan/controllers/provisionalPlanPreviewComponent.js"></script>
+<script src="app/components/user/controllers/userProfileController.js"></script>
+<script src="app/components/user/controllers/userProfileChangePasswordController.js"></script>
+
+</body>
+</html>

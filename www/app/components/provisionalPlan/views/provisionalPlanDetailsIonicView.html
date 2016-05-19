@@ -1,0 +1,31 @@
+<ion-view view-title="Mouvements">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon" ng-click="openModalToAddMovementClickListener()">
+      <i class="icon ion-ios-plus-outline font-header-ios-color"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="background-base has-header">
+    <ion-refresher
+      pulling-text="Tirer pour rafraichir ..."
+      on-refresh="refreshAllByRefresher()">
+    </ion-refresher>
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="font-weight-400">{{::provisionalPlan.name}} :</h2>
+        <h2 ng-style="style" class="font-weight-400">
+          {{totalOfMovements}}{{::$root.devise}} </span></h2>
+        </h2>
+      </div>
+    </div>
+
+    <ion-list show-delete="movementListOptions.shouldShowDelete"
+              show-reorder="movementListOptions.shouldShowReorder"
+              can-swipe="movementListOptions.listCanSwipe">
+      <movement ng-repeat="movement in provisionalPlan.movements | orderBy:'-createdAt'"
+                movement="movement"
+                provisional-plan="provisionalPlan"
+                on-update="refreshTotalOfMovements()"
+                on-remove="refreshTotalOfMovements()"></movement>
+    </ion-list>
+  </ion-content>
+</ion-view>

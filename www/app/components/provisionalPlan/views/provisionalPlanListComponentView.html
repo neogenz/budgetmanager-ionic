@@ -1,0 +1,17 @@
+<ion-view>
+  <ion-content>
+    <ion-refresher
+      pulling-text="Tirer pour rafraichir ..."
+      on-refresh="provisionalPlanListCtrl.refreshAllByRefresher()">
+    </ion-refresher>
+    <ion-list show-delete="provisionalPlanListCtrl.shouldShowDelete"
+              show-reorder="provisionalPlanListCtrl.shouldShowReorder"
+              can-swipe="provisionalPlanListCtrl.listCanSwipe">
+      <provisional-plan-preview-cmp
+        provisional-plan="provisionalPlan"
+        ng-repeat="provisionalPlan in provisionalPlanListCtrl.provisionalPlans | orderBy:'-createdAt' "
+        ui-sref="app.provisionalPlansDetails({id:provisionalPlan.id})">
+      </provisional-plan-preview-cmp>
+    </ion-list>
+  </ion-content>
+</ion-view>

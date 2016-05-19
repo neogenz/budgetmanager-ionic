@@ -1,0 +1,55 @@
+<ion-view hide-back-button="true" hide-nav-bar="true">
+  <div class="bar bar-header background-color-blue-header">
+    <h1 class="title font-primary-color">BManager</h1>
+  </div>
+  <ion-content class="padding has-header background-color-blue-container font-primary-color">
+    <div class="row">
+      <div class="col">
+        <h1 class="text-center lead font-primary-color">
+          <i class="icon ion-log-in"></i>
+          Connexion
+        </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <!-- LOGIN FORM -->
+        <div ng-show="$root.error" class="alert alert-warning" role="alert">{{$root.error}}</div>
+        <form role="form" ng-submit="signin()" name="signinForm" class="custom-help-block">
+          <div class="form-group" ng-class="{ 'has-error' : signinForm.email.$invalid && signinForm.email.$dirty }">
+            <label for="email">Email</label>
+            <input id="email" type="email" class="form-control font-primary-color" name="email" ng-model="loginForm.email"
+                   required="required">
+            <p ng-show="signinForm.email.$error.required && signinForm.email.$dirty" class="help-block">Veuillez entrer
+              votre adresse email.</p>
+            <p ng-show="signinForm.email.$invalid && !signinForm.email.$error.required" class="help-block">Veuillez
+              entrer une adresse email valide.</p>
+          </div>
+          <div class="form-group"
+               ng-class="{ 'has-error' : signinForm.password.$invalid && signinForm.password.$dirty }">
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" class="form-control font-primary-color" name="password" ng-model="loginForm.password"
+                   required="required">
+            <p ng-show="signinForm.password.$error.required && signinForm.password.$dirty" class="help-block">Veuillez
+              entrer votre mot de passe.</p>
+          </div>
+          <div class="form-group text-center bottom">
+            <button type="submit" class="btn btn-primary btn-lg full-width" ng-disabled="signinForm.$invalid">Se
+              connecter
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div>
+          <hr>
+          <p>Vous avez besoin d'un compte ? <a ui-sref="app.signup" class="font-color-secondary">S'inscrire</a></p>
+          <p>Ou aller à <a ui-sref="home" class="font-color-secondary">l'accueil</a>.</p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

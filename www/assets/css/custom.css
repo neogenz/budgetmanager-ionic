@@ -1,0 +1,393 @@
+.medium-bordered {
+  margin: 15px 0px 15px 0px;
+}
+
+.without-margin {
+  margin-bottom: 0px;
+}
+
+.button, .btn {
+  border-radius: 0px;
+}
+
+.panel {
+  border-radius: 0px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+
+.font-size-h2 {
+  font-size: 30px;
+}
+
+.small-left-separation {
+  margin-left: 10px;
+}
+
+.color-pink {
+  color: #FF4081;
+}
+
+.background-color-pink {
+  background-color: #FF4081 !important;
+}
+
+.background-color-blue-1 {
+  background-color: #3F51B5 !important;
+}
+
+.background-color-blue-1-subheader {
+  background-color: #7986CB !important;
+}
+
+.background-color-blue-2 {
+  background-color: #0d87e9 !important;
+}
+
+.background-color-blue-3 {
+  background-color: #3F51B5;
+}
+
+.background-color-inherited {
+  background-color: inherit;
+}
+
+.color-font-background-color-blue-1 {
+  color: white !important;
+}
+
+.color-blue-2 {
+  color: #0d87e9 !important;
+}
+
+.color-blue-1 {
+  color: #3F51B5;
+}
+
+.color-green {
+  color: green !important;
+}
+
+.color-gray {
+  color: #666;
+}
+
+.color-red {
+  color: red !important;
+}
+
+p, a, h1, h2, h3, h4, h5 {
+  word-wrap: break-word;
+}
+
+.btn-info {
+  background-color: #FF4081;
+}
+
+.btn-info:hover, .btn-info:active:hover {
+  background-color: #d73460;
+}
+
+.btn-info:active {
+  background-color: #D73460;
+  background-image: -webkit-radial-gradient(circle, #D73460 10%, #FF4081 11%);
+  background-image: -o-radial-gradient(circle, #D73460 10%, #FF4081 11%);
+  background-image: radial-gradient(circle, #D73460 10%, #FF4081 11%);
+  background-repeat: no-repeat;
+  -webkit-background-size: 1000% 1000%;
+  background-size: 1000%;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.alert-info {
+  background-color: #FF4081;
+}
+
+.text-info {
+  color: #FF4081;
+}
+
+.medium-left-separation {
+  margin-left: 20px;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.link-color-inverse {
+  color: #0d87e9;
+}
+
+.link-color-inverse:hover {
+  color: #0c7cd5;
+}
+
+.link-color {
+  color: #FFFFFF !important;
+}
+
+.link-color:hover, .link-color:focus {
+  color: #E0E0E0 !important;
+}
+
+.link-no-decoration {
+  text-decoration: none !important;
+}
+
+.link-no-decoration:hover {
+  text-decoration: none !important;
+}
+
+.color-white {
+  color: #ffffff !important;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: #3F51B5;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+
+.display-md-inline {
+  display: inline !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.no-margin-top {
+  margin-top: 0px !important;
+}
+
+@media all and (max-width: 384px) {
+  .h1-responsive {
+    font-size: 43px !important;
+  }
+
+  .h2-responsive {
+    font-size: 33px !important;
+  }
+
+  .h3-responsive {
+    font-size: 23px !important;
+  }
+
+  .h4-responsive {
+    font-size: 23px !important;
+  }
+
+  .h5-responsive {
+    font-size: 23px !important;
+  }
+
+  .btn-lg-responsive {
+    font-size: 15px;
+  }
+
+  .display-xs-block {
+    display: block !important;
+  }
+
+  .xs-no-ml {
+    margin-left: 0px;
+  }
+
+  .xs-mb-10 {
+    margin-bottom: 10px;
+  }
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mt0 {
+  margin-top: 0px;
+}
+
+.mb0 {
+  margin-bottom: 0px;
+}
+
+.pl0 {
+  padding-left: 0px;
+}
+
+.height-150{
+  height:150px !important;
+}
+
+h2 small {
+  color: #666 !important;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.bottom-40 {
+  bottom: 40%;
+}
+
+.bottom-0 {
+  bottom: 0%;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+/*Overload Ionic class */
+.scroll {
+  height: 100%
+}
+
+.float-bottom {
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+}
+
+/*Override bootswatch.min.css*/
+.row {
+  margin-left: inherit !important;
+  margin-right: inherit !important;
+}
+
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+  h1.homepage {
+    font-size: 100px !important;
+  }
+
+  h1.homepage small {
+    font-size: 55px !important;
+  }
+
+  .btn-lg, .btn-group-lg > .btn {
+    font-size: 23px;
+  }
+
+  .float-bottom {
+    /* position: absolute; */
+    /* bottom: 0; */
+    height: 150px;
+  }
+}
+
+@media only screen
+and (min-device-width: 320px)
+and (max-device-width: 568px)
+and (orientation: landscape) {
+  .iphone5-landscape-home-page-h1 {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  .iphone5-landscape-home-page-display-none {
+    display: none;
+  }
+
+  .icon-homepage {
+    font-size: 36px !important;
+  }
+}
+
+.icon-homepage {
+  font-size: 60px;
+}
+
+/*Override bootswatch.css - Start*/
+
+.lead {
+  margin-bottom: 0px;
+  font-size: 50px;
+}
+
+.custom-help-block .has-error input:not([type=checkbox]), .custom-help-block .has-error .form-control, .custom-help-block .has-error input.form-control[readonly], .custom-help-block .has-error input[type=text][readonly], .custom-help-block .has-error [type=text].form-control[readonly], .custom-help-block .has-error input:not([type=checkbox]):focus, .custom-help-block .has-error .form-control:focus {
+  border-bottom: none;
+  -webkit-box-shadow: inset 0 -2px 0 #FF80AB;
+  box-shadow: inset 0 -2px 0 #FF80AB;
+}
+
+.custom-help-block .has-error .help-block, .custom-help-block .has-error .control-label, .custom-help-block .has-error .radio, .custom-help-block .has-error .checkbox, .custom-help-block .has-error .radio-inline, .custom-help-block .has-error .checkbox-inline, .custom-help-block .has-error.radio label, .custom-help-block .has-error.checkbox label, .custom-help-block .has-error.radio-inline label, .custom-help-block .has-error.checkbox-inline label {
+  color: #FF80AB;
+}
+
+/*Override bootswatch.css - End*/
+
+.font-color-secondary {
+  color: #FF4081;
+}
+
+.font-primary-color {
+  color: white !important;
+}
+
+.background-color-blue-container {
+  background-color: #3F51B5 !important;
+}
+
+.background-color-blue-header {
+  background-color: #303F9F !important;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-header-ios-color {
+  color: #007AFF !important;
+}

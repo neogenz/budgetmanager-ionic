@@ -1,0 +1,33 @@
+<ion-item
+  ng-style="!movementCtrl.movement.active && {'background-color': '#F5F5F5'}"
+  class="item"
+  item="movementCtrl.movement">
+
+  <div class="content">
+    <div class="item-icon-left">
+      <h2 class="text-center">
+        {{movementCtrl.movement.name}}
+      </h2>
+      <h2 ng-show="movementCtrl.movement.type === 'up'" class="color-green text-center">
+        <i class="icon ion-ios-arrow-thin-up"></i>
+        {{movementCtrl.movement.amount}}€
+        <span class="color-gray" ng-show="movementCtrl.movement.repeat > 1">x{{movementCtrl.movement.repeat}}</span>
+      </h2>
+      <h2 ng-show="movementCtrl.movement.type === 'down'" class="color-red text-center">
+        <i class="icon ion-ios-arrow-thin-down"></i>
+        {{movementCtrl.movement.amount}}€
+        <span class="color-gray text-center" ng-show="movementCtrl.movement.repeat > 1">x{{movementCtrl.movement.repeat}}</span>
+      </h2>
+    </div>
+
+  </div>
+
+
+  <ion-option-button class="button-positive" ng-click="movementCtrl.openEditModalClickListener()">
+    <i class="color-white button button-icon icon ion-ios-compose"></i>
+  </ion-option-button>
+  <ion-option-button class="button-assertive" ng-click="movementCtrl.deleteClickListener()">
+    <i class="color-white button button-icon icon ion-ios-close"></i>
+  </ion-option-button>
+
+</ion-item>
