@@ -45,7 +45,6 @@
     }
 
     function _redirectToProvisionalPlanListIfUserAuthenthicated() {
-      console.log('im home');
       if (!neogenz.utilities.isUndefinedOrNull($localStorage.token)) {
         $state.go('app.provisionalPlans');
       }

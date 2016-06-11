@@ -2,47 +2,68 @@
   'use strict';
   angular
     .module('appBudgetManager')
-    .factory('movementWebApi', MovementWebAPI);
+    .factory('MovementService', MovementWebAPI);
 
   MovementWebAPI.$inject = [
     '$http',
     '$q',
-    '$ionicLoading'
+    '$ionicLoading',
+    '$cacheFactory',
+    'ProvisionalPlanService'
   ];
 
-  function MovementWebAPI($http, $q, $ionicLoading) {
+  function MovementWebAPI($http, $q, $ionicLoading, $cacheFactory, ProvisionalPlanService) {
+
+    var cache = $cacheFactory.get(budgetManager.config.cache.key);
+    if (!cache) {
+      cache = new $cacheFactory(budgetManager.config.cache.key);
+    }
 
     return {
       update: _update,
       remove: _remove,
-      getMovementsCollectionWithoutOne: _getMovementsCollectionWithoutOne
+      getMovementsCollectionWithoutOne: _getMovementsCollectionWithoutOne,
+      save: _save
     };
 
 
     /**
      * @name _update
      * Call the WS to update movement
-     * @param {object} param Object with provisionalPlanId and movement to update
+     * @param {{provisionalPlanId: number, movement: Movement}} param Object with provisionalPlanId
+     *                                                          and movement to update
      * @returns {d.promise|*|promise}
      */
     function _update(param) {
       $ionicLoading.show({
         template: 'Enregistrement ... <ion-spinner ></ion-spinner>'
       });
-      var def = $q.defer();
+      var provisionalPlansCached = cache.get(budgetManager.config.cache.provisionalPlanKey);
+      var provisionalPlanFocused = _.find(provisionalPlansCached, function (item) {
+        return item.id === param.provisionalPlanId;
+      });
+
       var requestOptions = neogenz.httpUtilities.buildPutRequestOptToCallThisUrl(
         '/me/provisionalPlans/' + param.provisionalPlanId + '/movements',
         param.movement
       );
       var promise = $http(requestOptions);
-      promise.then(function () {
-        def.resolve();
-      }, function () {
-        def.reject();
+      return promise.then(function (response) {
+        var updated = neogenz.beans.factory.getBean('Movement', response.data);
+        if (!neogenz.utilities.isUndefinedOrNull(provisionalPlansCached)) {
+          for (var i = 0; i < provisionalPlanFocused.movements.length; i++) {
+            if (provisionalPlanFocused.movements[i].id === updated.id) {
+              provisionalPlanFocused.movements[i] = updated;
+              break;
+            }
+          }
+        }
+        return updated;
+      }, function (reason) {
+        return $q.reject(reason);
       }).finally(function () {
         $ionicLoading.hide();
       });
-      return def.promise;
     }
 
 
@@ -56,19 +77,23 @@
       $ionicLoading.show({
         template: 'Suppression ... <ion-spinner></ion-spinner>'
       });
-      var def = $q.defer();
+      var provisionalPlansCached = cache.get(budgetManager.config.cache.provisionalPlanKey),
+        provisionalPlanFocused = _.findWhere(provisionalPlansCached, {id: param.provisionalPlanId});
       var requestOptions = neogenz.httpUtilities.buildDeleteRequestOptToCallThisUrl(
         '/me/provisionalPlans/' + param.provisionalPlanId + '/movements/' + param.movement.id
       );
-      var promise = $http(requestOptions);
-      promise.then(function () {
-        def.resolve();
-      }, function () {
-        def.reject();
+      return $http(requestOptions).then(function (response) {
+        var deleted = neogenz.beans.factory.getBean('Movement', response.data);
+        provisionalPlanFocused.movements = _.reject(provisionalPlanFocused.movements, function (movement) {
+          return movement.id === deleted.id;
+        });
+        return deleted;
+      }, function (response) {
+        console.error(response.data);
+        return response.data;
       }).finally(function () {
         $ionicLoading.hide();
       });
-      return def.promise;
     }
 
     /**
@@ -82,6 +107,25 @@
       return _.reject(movements, function (movement) {
         return movement.id === movementId;
       });
+    }
+
+
+    /**
+     * @function _save
+     * Save an movement by adding to an provisional plan
+     * or just update an movement
+     * @param {ProvisionalPlan} provisionalPlanToSave
+     * @returns {Promise}
+     */
+    function _save(movement, provisionalPlanId) {
+      if (neogenz.utilities.isUndefinedOrNull(movement.id)) {
+        return ProvisionalPlanService.addMovement(movement);
+      } else {
+        return _update({
+          provisionalPlanId: provisionalPlanId,
+          movement: movement
+        });
+      }
     }
   }
 })();

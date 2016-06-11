@@ -1,10 +1,14 @@
 (function init() {
-    'use strict';
+  'use strict';
 
-    neogenz.utilities.defineNamespace(budgetManager, 'config');
+  neogenz.utilities.defineNamespace(budgetManager, 'config');
 
-    budgetManager.config = {
-        mock: false,
-        debug: true
-    };
+  budgetManager.config = {
+    mock: false,
+    debug: true,
+    cache: {
+      key: 'budgetmanager',
+      provisionalPlanKey: 'provisionalplans'
+    }
+  };
 })();

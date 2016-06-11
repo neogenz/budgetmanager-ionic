@@ -1,0 +1,44 @@
+<ion-view view-title="Plans prévisionels">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon" ng-click="provisionalPlanListCtrl.openModalToAddProvisionalPlanClickListener()">
+      <i class="icon ion-ios-plus-outline font-header-ios-color"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-refresher
+      pulling-text="Tirer pour rafraichir ..."
+      on-refresh="provisionalPlanListCtrl.refreshAllByRefresher()">
+    </ion-refresher>
+    <ion-list show-delete="provisionalPlanListCtrl.shouldShowDelete"
+              show-reorder="provisionalPlanListCtrl.shouldShowReorder"
+              can-swipe="provisionalPlanListCtrl.listCanSwipe">
+      <ion-item
+        collection-repeat="provisionalPlan in provisionalPlanListCtrl.provisionalPlans | orderBy:'createdAt' "
+        item-height="72"
+        ui-sref="app.provisionalPlansDetails({id:provisionalPlan.id})"
+        class="item text-center"
+        item="provisionalPlan">
+        <div class="content">
+          <h2>{{::provisionalPlan.name}}</h2>
+          <h2 ng-style="::provisionalPlanListCtrl.getStyleBy(provisionalPlan)">
+            {{provisionalPlanListCtrl.getTotalOf(provisionalPlan)}}{{::$root.devise}}</h2>
+
+        </div>
+        <div class="item-icon-right">
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </div>
+
+        <ion-option-button class="button-positive"
+                           ng-click="provisionalPlanListCtrl.openModalToEditProvisionalPlanClickListener(provisionalPlan)">
+          <i class="color-white button button-icon icon ion-ios-compose"></i>
+        </ion-option-button>
+        <ion-option-button class="button-assertive"
+                           ng-click="provisionalPlanListCtrl.openModalToConfirmDeleteClickListener(provisionalPlan)">
+          <i class="color-white button button-icon icon ion-ios-close"></i>
+        </ion-option-button>
+
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

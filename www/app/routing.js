@@ -1,23 +1,21 @@
 (function () {
   'use strict';
 
-  var isAuthenticated = function ($rootScope, $q, $http, $state) {
-    var defer = $q.defer();
-    $http.get(budgetManager.config.webApi.baseUrl + '/isAuthenticated').then(
+  var isAuthenticated = function ($rootScope, $http, $state) {
+    var httpRequestionOptions = neogenz.httpUtilities.buildGetRequestOptToCallThisUrl('/isAuthenticated');
+    $http(httpRequestionOptions).then(
       function (response) {
         // Authenticated
         if (response.status !== undefined && response.status !== 200) {
           console.log(response.data);
-          defer.reject(response.data);
           $state.go('signin');
         } else {
           $rootScope.user = response.data;
-          defer.resolve(true);
+          return true;
         }
       }, function () {
         $state.go('signin');
       });
-    return defer.promise;
   };
 
   angular
@@ -47,22 +45,15 @@
       })
       .state('app.provisionalPlans', {
         url: '/provisionalPlans',
+        cache: false, //For refresh the provisionalPlans
         views: {
           'menuContent': {
-            template: `
-            <ion-view view-title="Plans prévisionels">
-              <ion-content class="has-header">
-                <provisional-plan-list-cmp provisional-plans="provisionalPlans"></provisional-plan-list-cmp>
-              <ion-content>
-            <ion-view view-title="Plans prévisionels">`,
-            controller: ['$scope', 'provisionalPlans', function ($scope, provisionalPlans) {
-              $scope.provisionalPlans = provisionalPlans;
-            }],
+            templateUrl: 'app/components/provisionalPlan/views/provisionalPlansList.html',
+            controller: 'ProvisionalPlansListController as provisionalPlanListCtrl',
             resolve: {
-              provisionalPlans: function ($stateParams, provisionalPlanWebApi) {
-                console.log('im routing');
+              provisionalPlans: function ($stateParams, ProvisionalPlanService) {
                 try {
-                  return provisionalPlanWebApi.findAll();
+                  return ProvisionalPlanService.findAll();
                 } catch (err) {
                   throw new Error(err);
                 }
@@ -73,15 +64,15 @@
         }
       })
       .state('app.provisionalPlansDetails', {
-        url: '/:id',
+        url: '/provisionalPlans/:id',
         views: {
           'menuContent': {
-            templateUrl: 'app/components/provisionalPlan/views/provisionalPlanDetailsIonicView.html',
-            controller: 'ProvisionalPlanDetailsController',
+            templateUrl: 'app/components/provisionalPlan/views/provisionalPlanDetails.html',
+            controller: 'ProvisionalPlanDetailsController as provisionalPlanDetailsCtrl',
             resolve: {
-              provisionalPlan: function ($stateParams, provisionalPlanWebApi) {
+              provisionalPlan: function ($stateParams, ProvisionalPlanService) {
                 try {
-                  return provisionalPlanWebApi.findById($stateParams.id);
+                  return ProvisionalPlanService.findById($stateParams.id);
                 } catch (err) {
                   throw new Error(err);
                 }

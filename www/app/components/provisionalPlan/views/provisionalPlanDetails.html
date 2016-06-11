@@ -1,0 +1,56 @@
+<ion-view view-title="Mouvements">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon" ng-click="provisionalPlanDetailsCtrl.openAddModalClickListener()">
+      <i class="icon ion-ios-plus-outline font-header-ios-color"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="background-base has-header">
+    <ion-refresher
+      pulling-text="Tirer pour rafraichir ..."
+      on-refresh="provisionalPlanDetailsCtrl.refreshAllByRefresher()">
+    </ion-refresher>
+    <div class="row">
+      <div class="col text-center">
+        <h2 class="font-weight-400">{{::provisionalPlanDetailsCtrl.provisionalPlan.name}} :</h2>
+        <h2 ng-style="provisionalPlanDetailsCtrl.style" class="font-weight-400">
+          {{provisionalPlanDetailsCtrl.totalOfMovements}}{{::$root.devise}} </span></h2>
+        </h2>
+      </div>
+    </div>
+
+    <ion-list show-delete="provisionalPlanDetailsCtrl.movementListOptions.shouldShowDelete"
+              show-reorder="provisionalPlanDetailsCtrl.movementListOptions.shouldShowReorder"
+              can-swipe="provisionalPlanDetailsCtrl.movementListOptions.listCanSwipe">
+      <ion-item collection-repeat="movement in provisionalPlanDetailsCtrl.provisionalPlan.movements"
+                item-height="72"
+                ng-style="!movement.active && {'background-color': '#F5F5F5'}"
+                class="item"
+                item="movement">
+
+        <div class="content">
+          <div class="item-icon-left">
+            <h2 class="text-center">
+              {{movement.name}}
+            </h2>
+            <h2 ng-style="(movement.type === 'up') ? {color:'green'} : {color:'red'}" class="text-center">
+              <i class="icon" ng-class="(movement.type === 'up') ? 'ion-ios-arrow-thin-up' : 'ion-ios-arrow-thin-down'"></i>
+              {{movement.amount}}€
+              <span class="color-gray text-center" ng-if="movement.repeat > 1">x{{movement.repeat}}</span>
+            </h2>
+          </div>
+
+        </div>
+
+
+        <ion-option-button class="button-positive" ng-click="provisionalPlanDetailsCtrl.openEditModalClickListener(movement)">
+          <i class="color-white button button-icon icon ion-ios-compose"></i>
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="provisionalPlanDetailsCtrl.openModalToConfirmDeleteClickListener(movement)">
+          <i class="color-white button button-icon icon ion-ios-close"></i>
+        </ion-option-button>
+
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

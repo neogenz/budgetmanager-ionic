@@ -1,0 +1,41 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title">{{::modal.current.modeMessage}} un plan prévisionnel</h1>
+    <button class="button button-clear button-primary" ng-click="hideProvisionalPlanModalForm()">Annuler</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <form role="form" name="provisionalPlanForm">
+      <div class="form-group"
+           ng-class="{ 'has-error' : provisionalPlanForm.name.$invalid && provisionalPlanForm.name.$dirty }">
+        <label for="name">Nom*</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Nom"
+               ng-model="provisionalPlanFormModel.name" required="required">
+        <p ng-show="provisionalPlanForm.name.$error.required && provisionalPlanForm.name.$dirty"
+           class="help-block">
+          Veuillez entrer un nom de plan prévisonnel.
+        </p>
+      </div>
+      <div class="form-group"
+           ng-class="{ 'has-error' : provisionalPlanForm.baseAmount.$invalid && provisionalPlanForm.baseAmount.$dirty }">
+        <label for="baseAmount">Montant de base*</label>
+
+        <input type="number" class="form-control" id="baseAmount" name="baseAmount" placeholder="Montant de base"
+               ng-model="provisionalPlanFormModel.baseAmount" required="required">
+        <p ng-show="provisionalPlanForm.baseAmount.$error.required && provisionalPlanForm.baseAmount.$dirty"
+           class="help-block">
+          Veuillez entrer un montant de base pour ce plan prévisionnel.
+        </p>
+        <p ng-show="!provisionalPlanForm.baseAmount.$error.required && provisionalPlanForm.baseAmount.$invalid" class="help-block">
+          Veuillez entrer un chiffre valide.
+        </p>
+      </div>
+    </form>
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg full-width" ng-click="saveThenCloseProvisionalPlanModalForm(provisionalPlanFormModel)"
+              ng-disabled="provisionalPlanForm.$invalid">
+        Enregistrer
+      </button>
+    </div>
+    <br/>
+  </ion-content>
+</ion-modal-view>

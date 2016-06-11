@@ -24,7 +24,7 @@ angular
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      if (window.cordova && window.cordova.plugins.Keyboard) {
+      if ((window.cordova !== undefined ) && (window.cordova.plugins !== undefined) && (window.cordova.plugins.Keyboard !== undefined)) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
 
@@ -38,8 +38,12 @@ angular
 
 angular
   .module('appBudgetManager')
-  .config(function ($httpProvider, $ionicConfigProvider) {
+  .config(function ($httpProvider, $ionicConfigProvider, $compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
     $ionicConfigProvider.backButton.text('').icon('ion-ios-arrow-left');
+    if (!ionic.Platform.isIOS()) {
+      $ionicConfigProvider.scrolling.jsScrolling(false);
+    }
     $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
       return {
         'request': function (config) {
@@ -101,15 +105,12 @@ function AppController($scope, authenticateWebApi, $rootScope, $localStorage, $s
    * @desc Call a factory to try disconnect user
    * @function _signout
    */
-  function _signout(){
-    debugger;
-    console.error('test');
+  function _signout() {
     authenticateWebApi.logout().then(function () {
       $rootScope.user = null;
       delete $localStorage.token;
       $state.go('home');
-    }, function(){
-      alert('err');
+    }, function () {
     });
   }
 }
